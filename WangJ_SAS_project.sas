@@ -1,8 +1,8 @@
 /* ----------------------------------------
 Code exported from SAS Enterprise Guide
-DATE: Monday, January 12, 2015     TIME: 3:27:05 PM
-PROJECT: WangJ_SAS_Project_20150112
-PROJECT PATH: P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp
+DATE: Tuesday, January 13, 2015     TIME: 11:37:43 AM
+PROJECT: WangJ_SAS_Project_20150113
+PROJECT PATH: C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp
 ---------------------------------------- */
 
 /* Library assignment for Local.WJX */
@@ -310,8 +310,8 @@ ODS tagsets.sasreport13(ID=EGSRX) FILE=EGSRX
 
 /*   START OF NODE: Assign Project Library (WJX)   */
 %LET _CLIENTTASKLABEL='Assign Project Library (WJX)';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
 LIBNAME WJX BASE "P:\QAC\qac200\students\jwang03" ;
@@ -322,41 +322,93 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: Reverse Code SF12 variables   */
-LIBNAME EC100007 "C:\Users\jwang03\Desktop\Assignment 5 20150112";
+/*   START OF NODE: Query Builder   */
+LIBNAME EC100068 "C:\Users\jwang03\Desktop\Assignment 6 20150113\MEPS";
 
 
-%LET _CLIENTTASKLABEL='Reverse Code SF12 variables';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+%LET _CLIENTTASKLABEL='Query Builder';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WJX.QUERY_FOR_MEPS_FULLYR_2012__0006);
+%_eg_conditional_dropds(WORK.QUERY_FOR_MEPS_ER_2012_SAS7_0000);
 
 PROC SQL;
-   CREATE TABLE WJX.QUERY_FOR_MEPS_FULLYR_2012__0006(label="QUERY_FOR_MEPS_FULLYR_2012__0006") AS 
-   SELECT t1.DUPERSID, 
-          t1.HEALTH_IN_GENERAL, 
-          t1.HLTH_LIMITS_MOD_ACTIVITIES, 
-          t1.HLTH_LIMITS_CLIMBING_STAIRS, 
-          t1.ACCP_LESS_BC_PHY_PRBS, 
-          t1.WORK_LIMT_BC_PJY_PROBS, 
-          t1.ACCP_LESS_BC_MNT_PRBS, 
-          t1.WORK_LIMT_BC_MNT_PROBS, 
-          t1.PAIN_LIMITS_NORMAL_WORK, 
-          t1.FELT_CALM_PEACEFUL, 
-          t1.HAD_A_LOT_OF_ENERGY, 
-          t1.FELT_DOWN, 
-          t1.HLTH_STOPPED_SOC_ACTIV, 
-          /* REVERSE_ADGENH42 */
-            (6 - t1.HEALTH_IN_GENERAL) LABEL="Reverse Coded ADGENH42" AS REVERSE_ADGENH42, 
-          /* REVERSE_ADPAIN42 */
-            (6 - t1.PAIN_LIMITS_NORMAL_WORK) LABEL="Reverse coding ADPAIN42" AS REVERSE_ADPAIN42, 
-          /* REVERSE_ADCAPE42 */
-            (6 - t1.FELT_CALM_PEACEFUL) LABEL="Reverse coding ADCAPE42" AS REVERSE_ADCAPE42, 
-          /* REVERSE_ADNRGY42 */
-            (6 - t1.HAD_A_LOT_OF_ENERGY) LABEL="Reverse coding ADNRGY42" AS REVERSE_ADNRGY42
-      FROM EC100007.query_for_meps_fullyr_2012__0004 t1;
+   CREATE TABLE WORK.QUERY_FOR_MEPS_ER_2012_SAS7_0000 AS 
+   SELECT /* INER */
+            (1) LABEL="INER" AS INER, 
+          t1.DUID, 
+          t1.PID, 
+          t1.DUPERSID, 
+          t1.EVNTIDX, 
+          t1.EVENTRN, 
+          t1.ERHEVIDX, 
+          t1.FFEEIDX, 
+          t1.PANEL, 
+          t1.MPCDATA, 
+          t1.ERDATEYR, 
+          t1.ERDATEMM, 
+          t1.ERDATEDD, 
+          t1.SEEDOC, 
+          t1.VSTCTGRY, 
+          t1.VSTRELCN, 
+          t1.LABTEST, 
+          t1.SONOGRAM, 
+          t1.XRAYS, 
+          t1.MAMMOG, 
+          t1.MRI, 
+          t1.EKG, 
+          t1.EEG, 
+          t1.RCVVAC, 
+          t1.ANESTH, 
+          t1.THRTSWAB, 
+          t1.OTHSVCE, 
+          t1.SURGPROC, 
+          t1.MEDPRESC, 
+          t1.ERICD1X, 
+          t1.ERICD2X, 
+          t1.ERICD3X, 
+          t1.ERPRO1X, 
+          t1.ERCCC1X, 
+          t1.ERCCC2X, 
+          t1.ERCCC3X, 
+          t1.FFERTYPE, 
+          t1.FFBEF12, 
+          t1.ERXP12X, 
+          t1.ERTC12X, 
+          t1.ERFSF12X, 
+          t1.ERFMR12X, 
+          t1.ERFMD12X, 
+          t1.ERFPV12X, 
+          t1.ERFVA12X, 
+          t1.ERFTR12X, 
+          t1.ERFOF12X, 
+          t1.ERFSL12X, 
+          t1.ERFWC12X, 
+          t1.ERFOR12X, 
+          t1.ERFOU12X, 
+          t1.ERFOT12X, 
+          t1.ERFXP12X, 
+          t1.ERFTC12X, 
+          t1.ERDSF12X, 
+          t1.ERDMR12X, 
+          t1.ERDMD12X, 
+          t1.ERDPV12X, 
+          t1.ERDVA12X, 
+          t1.ERDTR12X, 
+          t1.ERDOF12X, 
+          t1.ERDSL12X, 
+          t1.ERDWC12X, 
+          t1.ERDOR12X, 
+          t1.ERDOU12X, 
+          t1.ERDOT12X, 
+          t1.ERDXP12X, 
+          t1.ERDTC12X, 
+          t1.IMPFLAG, 
+          t1.PERWT12F, 
+          t1.VARSTR, 
+          t1.VARPSU
+      FROM EC100068.meps_er_2012 t1;
 QUIT;
 
 GOPTIONS NOACCESSIBLE;
@@ -367,244 +419,19 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: Table Analysis   */
-%LET _CLIENTTASKLABEL='Table Analysis';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: Query Builder1   */
+LIBNAME EC100070 "C:\Users\jwang03\Desktop\Assignment 6 20150113";
+
+
+%LET _CLIENTTASKLABEL='Query Builder1';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:34 PM
-   By task: Table Analysis
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   ------------------------------------------------------------------- */
+%_eg_conditional_dropds(WORK.QUERY_FOR_QUERY_2012_FUL_M__0000);
 
 PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.REVERSE_ADGENH42, T.HEALTH_IN_GENERAL
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__0006 as T
-;
-QUIT;
-TITLE;
-TITLE1 "Table Analysis";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA = WORK.SORTTempTableSorted
-	ORDER=INTERNAL
-;
-	TABLES HEALTH_IN_GENERAL * REVERSE_ADGENH42 /
-		NOROW
-		NOCOL
-		NOPERCENT
-		MISSPRINT
-		NOCUM
-		SCORES=TABLE
-		ALPHA=0.05;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Table Analysis1   */
-%LET _CLIENTTASKLABEL='Table Analysis1';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:34 PM
-   By task: Table Analysis1
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.PAIN_LIMITS_NORMAL_WORK, T.REVERSE_ADPAIN42
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__0006 as T
-;
-QUIT;
-TITLE;
-TITLE1 "Table Analysis";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA = WORK.SORTTempTableSorted
-	ORDER=INTERNAL
-;
-	TABLES PAIN_LIMITS_NORMAL_WORK * REVERSE_ADPAIN42 /
-		NOROW
-		NOCOL
-		NOPERCENT
-		MISSPRINT
-		NOCUM
-		SCORES=TABLE
-		ALPHA=0.05;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Table Analysis2   */
-%LET _CLIENTTASKLABEL='Table Analysis2';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:34 PM
-   By task: Table Analysis2
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.FELT_CALM_PEACEFUL, T.REVERSE_ADCAPE42
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__0006 as T
-;
-QUIT;
-TITLE;
-TITLE1 "Table Analysis";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA = WORK.SORTTempTableSorted
-	ORDER=INTERNAL
-;
-	TABLES FELT_CALM_PEACEFUL * REVERSE_ADCAPE42 /
-		NOROW
-		NOCOL
-		NOPERCENT
-		MISSPRINT
-		NOCUM
-		SCORES=TABLE
-		ALPHA=0.05;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Table Analysis3   */
-%LET _CLIENTTASKLABEL='Table Analysis3';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:34 PM
-   By task: Table Analysis3
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__0006
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.HAD_A_LOT_OF_ENERGY, T.REVERSE_ADNRGY42
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__0006 as T
-;
-QUIT;
-TITLE;
-TITLE1 "Table Analysis";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA = WORK.SORTTempTableSorted
-	ORDER=INTERNAL
-;
-	TABLES HAD_A_LOT_OF_ENERGY * REVERSE_ADNRGY42 /
-		NOROW
-		NOCOL
-		NOPERCENT
-		MISSPRINT
-		NOCUM
-		SCORES=TABLE
-		ALPHA=0.05;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Sum SF12 Variables   */
-%LET _CLIENTTASKLABEL='Sum SF12 Variables';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE);
-
-PROC SQL;
-   CREATE TABLE WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE(label="QUERY_FOR_MEPS_FULLYR_AGGREGATE") AS 
+   CREATE TABLE WORK.QUERY_FOR_QUERY_2012_FUL_M__0000 AS 
    SELECT t1.DUPERSID, 
           t1.HEALTH_IN_GENERAL, 
           t1.HLTH_LIMITS_MOD_ACTIVITIES, 
@@ -622,335 +449,52 @@ PROC SQL;
           t1.REVERSE_ADPAIN42, 
           t1.REVERSE_ADCAPE42, 
           t1.REVERSE_ADNRGY42, 
-          /* SUM_SF12 */
-            
-            (SUM(t1.HLTH_LIMITS_MOD_ACTIVITIES,t1.HLTH_LIMITS_CLIMBING_STAIRS,t1.ACCP_LESS_BC_PHY_PRBS,t1.WORK_LIMT_BC_PJY_PROBS,t1.ACCP_LESS_BC_MNT_PRBS,t1.WORK_LIMT_BC_MNT_PROBS,t1.FELT_DOWN,t1.HLTH_STOPPED_SOC_ACTIV,t1.REVERSE_ADGENH42,t1.REVERSE_ADPAIN42,t1.REVERSE_ADCAPE42,t1.REVERSE_ADNRGY42)) 
-            LABEL="Sum of 12SF" AS SUM_SF12
-      FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__0006 t1;
-QUIT;
-
-GOPTIONS NOACCESSIBLE;
-
-
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: List Data   */
-%LET _CLIENTTASKLABEL='List Data';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:34 PM
-   By task: List Data
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.HLTH_LIMITS_MOD_ACTIVITIES, T.HLTH_LIMITS_CLIMBING_STAIRS, T.ACCP_LESS_BC_PHY_PRBS, T.WORK_LIMT_BC_PJY_PROBS, T.ACCP_LESS_BC_MNT_PRBS, T.WORK_LIMT_BC_MNT_PROBS, T.FELT_DOWN, T.HLTH_STOPPED_SOC_ACTIV, T.REVERSE_ADGENH42
-		     , T.REVERSE_ADPAIN42, T.REVERSE_ADCAPE42, T.REVERSE_ADNRGY42, T.SUM_SF12
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE as T
-;
-QUIT;
-TITLE;
-TITLE1 "Check SF-12 Variables";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-
-PROC PRINT DATA=WORK.SORTTempTableSorted
-	(OBS=50)
-	OBS="Row number"
-	LABEL
-	;
-	VAR HLTH_LIMITS_MOD_ACTIVITIES HLTH_LIMITS_CLIMBING_STAIRS ACCP_LESS_BC_PHY_PRBS WORK_LIMT_BC_PJY_PROBS ACCP_LESS_BC_MNT_PRBS WORK_LIMT_BC_MNT_PROBS FELT_DOWN HLTH_STOPPED_SOC_ACTIV REVERSE_ADGENH42 REVERSE_ADPAIN42 REVERSE_ADCAPE42 REVERSE_ADNRGY42
-	  SUM_SF12;
-RUN;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Summary Statistics for SF12 Aggregate Variables   */
-%LET _CLIENTTASKLABEL='Summary Statistics for SF12 Aggregate Variables';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:35 PM
-   By task: Summary Statistics for SF12 Aggregate Variables
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.SUM_SF12
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE(FIRSTOBS=1 ) as T
-;
-QUIT;
-/* -------------------------------------------------------------------
-   Run the Means Procedure
-   ------------------------------------------------------------------- */
-TITLE;
-TITLE1 "Summary Statistics";
-TITLE2 "Results for 2012 SF12 Aggregate Variables";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
-PROC MEANS DATA=WORK.SORTTempTableSorted
-	FW=12
-	PRINTALLTYPES
-	CHARTYPE
-	QMETHOD=OS
-	VARDEF=DF 	
-		MEAN 
-		STD 
-		MIN 
-		MAX 
-		MODE 
-		N	
-		Q1 
-		MEDIAN 
-		Q3	;
-	VAR SUM_SF12;
-
-RUN;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Distribution Analysis for SF12 Aggregate Variables   */
-%LET _CLIENTTASKLABEL='Distribution Analysis for SF12 Aggregate Variables';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:35 PM
-   By task: Distribution Analysis for SF12 Aggregate Variables
-
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   PROC SHEWHART does not support DEVICE=ACTIVEX. Switching to PNG.
-   ------------------------------------------------------------------- */
-OPTIONS DEV=PNG;
-ODS GRAPHICS ON;
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.SUM_SF12
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE(FIRSTOBS=1 ) as T
-;
-QUIT;
-TITLE;
-TITLE1 "Distribution analysis of: SUM_SF12 Variables";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
-	ODS EXCLUDE EXTREMEOBS MODES MOMENTS;
-	
-	GOPTIONS htext=1 cells;
-	SYMBOL v=SQUARE c=BLUE h=1 cells;
-	PATTERN v=SOLID
-	;
-PROC UNIVARIATE DATA = WORK.SORTTempTableSorted
-		CIBASIC(TYPE=TWOSIDED ALPHA=0.05)
-		MU0=0
-;
-	VAR SUM_SF12;
-	HISTOGRAM   SUM_SF12 / NORMAL	( 	W=1 	L=1 	COLOR=YELLOW  MU=EST SIGMA=EST)
-	
-		CFRAME=GRAY CAXES=BLACK WAXIS=1  CBARLINE=BLACK CFILL=BLUE PFILL=SOLID ;
-	;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-/* -------------------------------------------------------------------
-   Restoring original device type setting.
-   ------------------------------------------------------------------- */
-OPTIONS DEV=ACTIVEX;
-ODS GRAPHICS OFF;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Sum SF12 Categorical   */
-%LET _CLIENTTASKLABEL='Sum SF12 Categorical';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WORK.QUERY_FOR_MEPS_FULLYR_AGGRE_0001);
-
-PROC SQL;
-   CREATE TABLE WORK.QUERY_FOR_MEPS_FULLYR_AGGRE_0001 AS 
-   SELECT t1.SUM_SF12, 
-          /* SUM_SF12_CATEGORICAL */
-            (CASE  
-               WHEN t1.SUM_SF12 >=2 and t1.SUM_SF12 <=32
-               THEN 1
-               WHEN t1.SUM_SF12 >32 and t1.SUM_SF12 <=41
-               THEN 2
-               WHEN t1.SUM_SF12 >41 and t1.SUM_SF12 <=48
-               THEN 3
-               WHEN t1.SUM_SF12 >48 and t1.SUM_SF12 <=52
-               THEN 4
-               WHEN t1.SUM_SF12 >52 
-               THEN 5
-            END) LABEL="Sum SF12 Categorical" AS SUM_SF12_CATEGORICAL
-      FROM WJX.QUERY_FOR_MEPS_FULLYR_AGGREGATE t1;
-QUIT;
-
-GOPTIONS NOACCESSIBLE;
-
-
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: One-Way Frequencies   */
-%LET _CLIENTTASKLABEL='One-Way Frequencies';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:35 PM
-   By task: One-Way Frequencies
-
-   Input Data: Local:WORK.QUERY_FOR_MEPS_FULLYR_AGGRE_0001
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORT);
-/* -------------------------------------------------------------------
-   Sort data set Local:WORK.QUERY_FOR_MEPS_FULLYR_AGGRE_0001
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORT AS
-		SELECT T.SUM_SF12, T.SUM_SF12_CATEGORICAL
-	FROM WORK.QUERY_FOR_MEPS_FULLYR_AGGRE_0001 as T
-;
-QUIT;
-
-TITLE;
-TITLE1 "One-Way Frequencies";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA=WORK.SORT
-	ORDER=INTERNAL
-;
-	TABLES SUM_SF12 /  SCORES=TABLE;
-	TABLES SUM_SF12_CATEGORICAL /  SCORES=TABLE;
-RUN;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORT);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Sum Doctor Quality   */
-LIBNAME EC100008 "C:\Users\jwang03\Desktop\Assignment 5 20150112";
-
-
-%LET _CLIENTTASKLABEL='Sum Doctor Quality';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW);
-
-PROC SQL;
-   CREATE TABLE WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW(label="QUERY_FOR_MEPS_FULLYR_2012__NEW") AS 
-   SELECT t1.DUPERSID, 
+          t1.DUPERSID1, 
+          t1.Marital_Status_Cate, 
+          t1.DUPERSID2, 
+          t1.MARRY12X, 
+          t1.EDRECODE, 
+          t1.MARITUAL_STATUS, 
+          t1.EDUCATION_RECODE, 
+          t1.EDRECODE_Categories, 
+          t1.HEALTH_IN_GENERAL1, 
+          t1.HLTH_LIMITS_MOD_ACTIVITIES1, 
+          t1.HLTH_LIMITS_CLIMBING_STAIRS1, 
+          t1.ACCP_LESS_BC_PHY_PRBS1, 
+          t1.WORK_LIMT_BC_PJY_PROBS1, 
+          t1.ACCP_LESS_BC_MNT_PRBS1, 
+          t1.WORK_LIMT_BC_MNT_PROBS1, 
+          t1.PAIN_LIMITS_NORMAL_WORK1, 
+          t1.FELT_CALM_PEACEFUL1, 
+          t1.HAD_A_LOT_OF_ENERGY1, 
+          t1.FELT_DOWN1, 
+          t1.HLTH_STOPPED_SOC_ACTIV1, 
+          t1.REVERSE_ADGENH421, 
+          t1.REVERSE_ADPAIN421, 
+          t1.REVERSE_ADCAPE421, 
+          t1.REVERSE_ADNRGY421, 
+          t1.SUM_SF12, 
+          t1.DUPERSID3, 
           t1.REGION12, 
           t1.AGE12X, 
           t1.SEX, 
           t1.RACETHX, 
-          t1.MARRY12X, 
+          t1.MARRY12X1, 
           t1.EDUCYR, 
           t1.EMPST31, 
           t1.MARTIAL_STATUS, 
-          t1.HEALTH_IN_GENERAL, 
-          t1.HLTH_LIMITS_MOD_ACTIVITIES, 
-          t1.HLTH_LIMITS_CLIMBING_STAIRS, 
-          t1.ACCP_LESS_BC_PHY_PRBS, 
-          t1.WORK_LIMT_BC_PJY_PROBS, 
-          t1.ACCP_LESS_BC_MNT_PRBS, 
-          t1.WORK_LIMT_BC_MNT_PROBS, 
-          t1.PAIN_LIMITS_NORMAL_WORK, 
-          t1.FELT_CALM_PEACEFUL, 
-          t1.HAD_A_LOT_OF_ENERGY, 
-          t1.FELT_DOWN, 
-          t1.HLTH_STOPPED_SOC_ACTIV, 
+          t1.HEALTH_IN_GENERAL2, 
+          t1.HLTH_LIMITS_MOD_ACTIVITIES2, 
+          t1.HLTH_LIMITS_CLIMBING_STAIRS2, 
+          t1.ACCP_LESS_BC_PHY_PRBS2, 
+          t1.WORK_LIMT_BC_PJY_PROBS2, 
+          t1.ACCP_LESS_BC_MNT_PRBS2, 
+          t1.WORK_LIMT_BC_MNT_PROBS2, 
+          t1.PAIN_LIMITS_NORMAL_WORK2, 
+          t1.FELT_CALM_PEACEFUL2, 
+          t1.HAD_A_LOT_OF_ENERGY2, 
+          t1.FELT_DOWN2, 
+          t1.HLTH_STOPPED_SOC_ACTIV2, 
           t1.YEARS_EDUC, 
           t1.EMPLOYMENT_STATUS_53, 
           t1.EMPLOYMENT_STATS_31, 
@@ -1046,10 +590,9 @@ PROC SQL;
           t1.OVERCOME_WITHOUT_INSURC, 
           t1.CANCER, 
           t1.FELT_HOPELESS, 
-          /* Sum_doctor_quality */
-            (SUM(t1.EXPLAIN_UNDERSTOOD,t1.SHOW_RESPECT,t1.EASY_GET_MED_CARE,t1.DOC_LISTEN_TO,t1.DOC_SPENT_ENUF_TIME)) 
-            LABEL="Sum of doctor quality" AS Sum_doctor_quality
-      FROM EC100008.query_for_meps_fullyr_2012__0004 t1;
+          /* INFULLYR */
+            (1) LABEL="INFULLYR" AS INFULLYR
+      FROM EC100070.query_2012_ful_m t1;
 QUIT;
 
 GOPTIONS NOACCESSIBLE;
@@ -1060,44 +603,299 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: List Data1   */
-%LET _CLIENTTASKLABEL='List Data1';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: Query Builder2   */
+%LET _CLIENTTASKLABEL='Query Builder2';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+%_eg_conditional_dropds(WJX.QUERY_ER_2012_M);
+
+PROC SQL;
+   CREATE TABLE WJX.QUERY_ER_2012_M(label="QUERY_ER_2012_M") AS 
+   SELECT t1.INER, 
+          t1.DUID, 
+          t1.PID, 
+          t1.DUPERSID, 
+          t1.EVNTIDX, 
+          t1.EVENTRN, 
+          t1.ERHEVIDX, 
+          t1.FFEEIDX, 
+          t1.PANEL, 
+          t2.DUPERSID AS DUPERSID1, 
+          t2.HEALTH_IN_GENERAL, 
+          t2.HLTH_LIMITS_MOD_ACTIVITIES, 
+          t2.HLTH_LIMITS_CLIMBING_STAIRS, 
+          t2.ACCP_LESS_BC_PHY_PRBS, 
+          t2.WORK_LIMT_BC_PJY_PROBS, 
+          t2.ACCP_LESS_BC_MNT_PRBS, 
+          t2.WORK_LIMT_BC_MNT_PROBS, 
+          t2.PAIN_LIMITS_NORMAL_WORK, 
+          t2.FELT_CALM_PEACEFUL, 
+          t2.HAD_A_LOT_OF_ENERGY, 
+          t2.FELT_DOWN, 
+          t2.HLTH_STOPPED_SOC_ACTIV, 
+          t2.REVERSE_ADGENH42, 
+          t2.REVERSE_ADPAIN42, 
+          t2.REVERSE_ADCAPE42, 
+          t2.REVERSE_ADNRGY42, 
+          t2.DUPERSID1 AS DUPERSID11, 
+          t2.Marital_Status_Cate, 
+          t2.DUPERSID2, 
+          t2.MARRY12X, 
+          t2.EDRECODE, 
+          t2.MARITUAL_STATUS, 
+          t2.EDUCATION_RECODE, 
+          t2.EDRECODE_Categories, 
+          t2.HEALTH_IN_GENERAL1, 
+          t2.HLTH_LIMITS_MOD_ACTIVITIES1, 
+          t2.HLTH_LIMITS_CLIMBING_STAIRS1, 
+          t2.ACCP_LESS_BC_PHY_PRBS1, 
+          t2.WORK_LIMT_BC_PJY_PROBS1, 
+          t2.ACCP_LESS_BC_MNT_PRBS1, 
+          t2.WORK_LIMT_BC_MNT_PROBS1, 
+          t2.PAIN_LIMITS_NORMAL_WORK1, 
+          t2.FELT_CALM_PEACEFUL1, 
+          t2.HAD_A_LOT_OF_ENERGY1, 
+          t2.FELT_DOWN1, 
+          t2.HLTH_STOPPED_SOC_ACTIV1, 
+          t2.REVERSE_ADGENH421, 
+          t2.REVERSE_ADPAIN421, 
+          t2.REVERSE_ADCAPE421, 
+          t2.REVERSE_ADNRGY421, 
+          t2.SUM_SF12, 
+          t2.DUPERSID3, 
+          t2.REGION12, 
+          t2.AGE12X, 
+          t2.SEX, 
+          t2.RACETHX, 
+          t2.MARRY12X1, 
+          t2.EDUCYR, 
+          t2.EMPST31, 
+          t2.MARTIAL_STATUS, 
+          t2.HEALTH_IN_GENERAL2, 
+          t2.HLTH_LIMITS_MOD_ACTIVITIES2, 
+          t2.HLTH_LIMITS_CLIMBING_STAIRS2, 
+          t2.ACCP_LESS_BC_PHY_PRBS2, 
+          t2.WORK_LIMT_BC_PJY_PROBS2, 
+          t2.ACCP_LESS_BC_MNT_PRBS2, 
+          t2.WORK_LIMT_BC_MNT_PROBS2, 
+          t2.PAIN_LIMITS_NORMAL_WORK2, 
+          t2.FELT_CALM_PEACEFUL2, 
+          t2.HAD_A_LOT_OF_ENERGY2, 
+          t2.FELT_DOWN2, 
+          t2.HLTH_STOPPED_SOC_ACTIV2, 
+          t2.YEARS_EDUC, 
+          t2.EMPLOYMENT_STATUS_53, 
+          t2.EMPLOYMENT_STATS_31, 
+          t2.'EMPLOYMENT_STATUS _42'n, 
+          t2.EMPST42, 
+          t2.EMPST53, 
+          t2.ADPRX42, 
+          t2.ADULT_PROXY, 
+          t2.ILL_NEED_CARE, 
+          t2.GOT_CARE_WHEN_NEEDED, 
+          t2.MADE_APPT_ROUTINE, 
+          t2.GOT_MED_APPT_WHEN_NEEDED, 
+          t2.NEED_ANY_CARE, 
+          t2.EXPLAIN_UNDERSTOOD, 
+          t2.SHOW_RESPECT, 
+          t2.HAD_TO_FILL_FORM, 
+          t2.OFFERED_HELP_FILL_FORM, 
+          t2.ADILCR42, 
+          t2.ADILWW42, 
+          t2.ADRTCR42, 
+          t2.ADRTWW42, 
+          t2.ADAPPT42, 
+          t2.ADNDCR42, 
+          t2.ADEGMC42, 
+          t2.ADLIST42, 
+          t2.ADEXPL42, 
+          t2.ADRESP42, 
+          t2.ADPRTM42, 
+          t2.ADINST42, 
+          t2.ADEZUN42, 
+          t2.ADTLHW42, 
+          t2.ADFFRM42, 
+          t2.ADFHLP42, 
+          t2.ADHECR42, 
+          t2.ADSMOK42, 
+          t2.ADNSMK42, 
+          t2.ADDRBP42, 
+          t2.ADSPEC42, 
+          t2.ADSPRF42, 
+          t2.ADGENH42, 
+          t2.ADDAYA42, 
+          t2.ADCLIM42, 
+          t2.ADPALS42, 
+          t2.ADPWLM42, 
+          t2.ADMALS42, 
+          t2.ADMWLM42, 
+          t2.ADPAIN42, 
+          t2.ADCAPE42, 
+          t2.ADNRGY42, 
+          t2.ADDOWN42, 
+          t2.ADSOCA42, 
+          t2.PCS42, 
+          t2.MCS42, 
+          t2.SFFLAG42, 
+          t2.ADNERV42, 
+          t2.ADHOPE42, 
+          t2.ADREST42, 
+          t2.ADSAD42, 
+          t2.ADEFRT42, 
+          t2.ADWRTH42, 
+          t2.K6SUM42, 
+          t2.ADINTR42, 
+          t2.ADDPRS42, 
+          t2.PHQ242, 
+          t2.ADINSA42, 
+          t2.ADINSB42, 
+          t2.ADRISK42, 
+          t2.ADOVER42, 
+          t2.ADCMPM42, 
+          t2.ADCMPD42, 
+          t2.ADCMPY42, 
+          t2.ADLANG42, 
+          t2.FAMINC12, 
+          t2.INSCOV12, 
+          t2.INSURC12, 
+          t2.TOTMCR12, 
+          t2.MDUNAB42, 
+          t2.STRKDX, 
+          t2.ANGIDX, 
+          t2.ARTHDX, 
+          t2.ASTHDX, 
+          t2.CANCERDX, 
+          t2.OHRTDX, 
+          t2.ERDEXP12, 
+          t2.IPTEXP12, 
+          t2.EASY_GET_MED_CARE, 
+          t2.DOC_LISTEN_TO, 
+          t2.DOC_SPENT_ENUF_TIME, 
+          t2.RATING_HEALTH_CARE, 
+          t2.DONT_NEED_HLTH_INS, 
+          t2.HLTH_INS_WORTH, 
+          t2.OVERALL_RATING_OF_FEELINGS, 
+          t2.OVERCOME_WITHOUT_INSURC, 
+          t2.CANCER, 
+          t2.FELT_HOPELESS, 
+          t2.INFULLYR, 
+          t1.MPCDATA, 
+          t1.ERDATEYR, 
+          t1.ERDATEMM, 
+          t1.ERDATEDD, 
+          t1.SEEDOC, 
+          t1.VSTCTGRY, 
+          t1.VSTRELCN, 
+          t1.LABTEST, 
+          t1.SONOGRAM, 
+          t1.XRAYS, 
+          t1.MAMMOG, 
+          t1.MRI, 
+          t1.EKG, 
+          t1.EEG, 
+          t1.RCVVAC, 
+          t1.ANESTH, 
+          t1.THRTSWAB, 
+          t1.OTHSVCE, 
+          t1.SURGPROC, 
+          t1.MEDPRESC, 
+          t1.ERICD1X, 
+          t1.ERICD2X, 
+          t1.ERICD3X, 
+          t1.ERPRO1X, 
+          t1.ERCCC1X, 
+          t1.ERCCC2X, 
+          t1.ERCCC3X, 
+          t1.FFERTYPE, 
+          t1.FFBEF12, 
+          t1.ERXP12X, 
+          t1.ERTC12X, 
+          t1.ERFSF12X, 
+          t1.ERFMR12X, 
+          t1.ERFMD12X, 
+          t1.ERFPV12X, 
+          t1.ERFVA12X, 
+          t1.ERFTR12X, 
+          t1.ERFOF12X, 
+          t1.ERFSL12X, 
+          t1.ERFWC12X, 
+          t1.ERFOR12X, 
+          t1.ERFOU12X, 
+          t1.ERFOT12X, 
+          t1.ERFXP12X, 
+          t1.ERFTC12X, 
+          t1.ERDSF12X, 
+          t1.ERDMR12X, 
+          t1.ERDMD12X, 
+          t1.ERDPV12X, 
+          t1.ERDVA12X, 
+          t1.ERDTR12X, 
+          t1.ERDOF12X, 
+          t1.ERDSL12X, 
+          t1.ERDWC12X, 
+          t1.ERDOR12X, 
+          t1.ERDOU12X, 
+          t1.ERDOT12X, 
+          t1.ERDXP12X, 
+          t1.ERDTC12X, 
+          t1.IMPFLAG, 
+          t1.PERWT12F, 
+          t1.VARSTR, 
+          t1.VARPSU
+      FROM WORK.QUERY_FOR_MEPS_ER_2012_SAS7_0000 t1
+           FULL JOIN WORK.QUERY_FOR_QUERY_2012_FUL_M__0000 t2 ON (t1.DUPERSID = t2.DUPERSID)
+      WHERE t1.INER = 1 AND t2.INFULLYR = 1;
+QUIT;
+
+GOPTIONS NOACCESSIBLE;
+
+
+
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: List Data for Merged Dataset   */
+%LET _CLIENTTASKLABEL='List Data for Merged Dataset';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
 /* -------------------------------------------------------------------
    Code generated by SAS Task
 
-   Generated on: Monday, January 12, 2015 at 3:26:35 PM
-   By task: List Data1
+   Generated on: Tuesday, January 13, 2015 at 11:37:06 AM
+   By task: List Data for Merged Dataset
 
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW
+   Input Data: Local:WJX.QUERY_ER_2012_M
    Server:  Local
    ------------------------------------------------------------------- */
 
 %_eg_conditional_dropds(WORK.SORTTempTableSorted);
 /* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW
+   Sort data set Local:WJX.QUERY_ER_2012_M
    ------------------------------------------------------------------- */
 
 PROC SQL;
 	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.EXPLAIN_UNDERSTOOD, T.DOC_LISTEN_TO, T.SHOW_RESPECT, T.DOC_SPENT_ENUF_TIME, T.EASY_GET_MED_CARE, T.Sum_doctor_quality
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW as T
+		SELECT T.INER, T.DUPERSID1, T.DUPERSID
+	FROM WJX.QUERY_ER_2012_M(FIRSTOBS=1 ) as T
 ;
 QUIT;
 TITLE;
-TITLE1 "Check Aggregate Dr. Quality Variables";
+TITLE1 "Report Listing for Merged Dataset";
 FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
 
 PROC PRINT DATA=WORK.SORTTempTableSorted
-	(OBS=50)
+	(OBS=100)
 	OBS="Row number"
 	LABEL
 	;
-	VAR EXPLAIN_UNDERSTOOD DOC_LISTEN_TO SHOW_RESPECT DOC_SPENT_ENUF_TIME EASY_GET_MED_CARE Sum_doctor_quality;
+	VAR INER DUPERSID1 DUPERSID;
 RUN;
 /* -------------------------------------------------------------------
    End of task code.
@@ -1113,64 +911,103 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: Summary Statistics for Doctor Quality   */
-%LET _CLIENTTASKLABEL='Summary Statistics for Doctor Quality';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: Data Set Attributes   */
+%LET _CLIENTTASKLABEL='Data Set Attributes';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
 /* -------------------------------------------------------------------
    Code generated by SAS Task
 
-   Generated on: Monday, January 12, 2015 at 3:26:35 PM
-   By task: Summary Statistics for Doctor Quality
+   Generated on: Tuesday, January 13, 2015 at 11:37:07 AM
+   By task: Data Set Attributes
 
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW
+   Input Data: Local:WJX.QUERY_ER_2012_M
    Server:  Local
    ------------------------------------------------------------------- */
 
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.Sum_doctor_quality
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW(FIRSTOBS=1 ) as T
-;
-QUIT;
-/* -------------------------------------------------------------------
-   Run the Means Procedure
-   ------------------------------------------------------------------- */
+%_eg_conditional_dropds(WJX.CONTCONTENTSFORQUERY_ER_2012_M);
 TITLE;
-TITLE1 "Summary Statistics";
-TITLE2 "Results for Doctor Quality";
 FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
-PROC MEANS DATA=WORK.SORTTempTableSorted
-	FW=12
-	PRINTALLTYPES
-	CHARTYPE
-	QMETHOD=OS
-	VARDEF=DF 	
-		MEAN 
-		STD 
-		MIN 
-		MAX 
-		MODE 
-		N	
-		Q1 
-		MEDIAN 
-		Q3	;
-	VAR Sum_doctor_quality;
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
+PROC FORMAT;
+   VALUE _EG_VARTYPE 1="Numeric" 2="Character" OTHER="unknown";
+RUN;
+
+PROC DATASETS NOLIST NODETAILS; 
+   CONTENTS DATA=WJX.QUERY_ER_2012_M OUT=WORK.SUCOUT1;
 
 RUN;
+
+DATA WJX.CONTCONTENTSFORQUERY_ER_2012_M(LABEL="Contents Details for QUERY_ER_2012_M");
+   SET WORK.SUCOUT1;
+RUN;
+
+PROC DELETE DATA=WORK.SUCOUT1;
+RUN;
+
+%LET _LINESIZE=%SYSFUNC(GETOPTION(LINESIZE));
+
+PROC SQL;
+CREATE VIEW WORK.SCVIEW AS 
+	SELECT DISTINCT memname LABEL="Table Name", 
+			memlabel LABEL="Label", 
+			memtype LABEL="Type", 
+			crdate LABEL="Date Created", 
+			modate LABEL="Date Modified", 
+			nobs LABEL="Number of Obs.", 
+			charset LABEL="Char. Set", 
+			protect LABEL="Password Protected", 
+			typemem LABEL="Data Set Type" FROM WJX.CONTCONTENTSFORQUERY_ER_2012_M
+	ORDER BY memname ; 
+
+CREATE TABLE WORK.SCTABLE AS
+	SELECT * FROM WORK.SCVIEW
+		WHERE memname='QUERY_ER_2012_M';
+QUIT;
+
+TITLE "Tables on &_SASSERVERNAME"; 
+PROC REPORT DATA=WORK.SCTABLE; 
+   DEFINE  MEMLABEL / DISPLAY WIDTH=&_LINESIZE; 
+   COLUMN memname memlabel memtype crdate modate nobs charset protect typemem; 
+RUN;QUIT;
+
+PROC SORT DATA=WJX.CONTCONTENTSFORQUERY_ER_2012_M OUT=WJX.CONTCONTENTSFORQUERY_ER_2012_M;
+   BY memname name;
+RUN;
+
+OPTIONS NOBYLINE;
+TITLE 'Variables in Table: #BYVAL(memname)'; 
+
+PROC SQL;
+DROP TABLE WORK.SCTABLE;
+CREATE TABLE WORK.SCTABLE AS
+	SELECT * FROM WJX.CONTCONTENTSFORQUERY_ER_2012_M
+		WHERE memname='QUERY_ER_2012_M';
+QUIT;
+
+PROC REPORT DATA=WORK.SCTABLE NOWINDOWS; 
+   FORMAT TYPE _EG_VARTYPE.; 
+   DEFINE LABEL / DISPLAY WIDTH=&_LINESIZE; 
+   LABEL NAME="Name" LABEL="Label" TYPE="Type" LENGTH="Length" INFORMAT="Informat" FORMAT="Format"; 
+   BY memname NOTSORTED;  
+   COLUMN name varnum type format label length;  
+ QUIT;  
+
+PROC SQL;
+	DROP TABLE WORK.SCTABLE;
+	DROP VIEW WORK.SCVIEW;
+QUIT;
+
+PROC CATALOG CATALOG=WORK.FORMATS;
+   DELETE _EG_VARTYPE / ENTRYTYPE=FORMAT;
+RUN;
+OPTIONS BYLINE;
 /* -------------------------------------------------------------------
    End of task code.
    ------------------------------------------------------------------- */
 RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
 TITLE; FOOTNOTE;
 
 
@@ -1180,19 +1017,468 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: Distribution Analysis for Doctor Quality   */
-%LET _CLIENTTASKLABEL='Distribution Analysis for Doctor Quality';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: Recoded Missing for MRI & Xrays   */
+%LET _CLIENTTASKLABEL='Recoded Missing for MRI & Xrays';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+%_eg_conditional_dropds(WJX.QUERY_ER_2012_M_Recoded);
+
+PROC SQL;
+   CREATE TABLE WJX.QUERY_ER_2012_M_Recoded(label="QUERY_ER_2012_M_Recoded") AS 
+   SELECT t1.INER, 
+          t1.DUID, 
+          t1.PID, 
+          t1.DUPERSID, 
+          t1.EVNTIDX, 
+          t1.EVENTRN, 
+          t1.ERHEVIDX, 
+          t1.FFEEIDX, 
+          t1.PANEL, 
+          t1.DUPERSID1, 
+          t1.HEALTH_IN_GENERAL, 
+          t1.HLTH_LIMITS_MOD_ACTIVITIES, 
+          t1.HLTH_LIMITS_CLIMBING_STAIRS, 
+          t1.ACCP_LESS_BC_PHY_PRBS, 
+          t1.WORK_LIMT_BC_PJY_PROBS, 
+          t1.ACCP_LESS_BC_MNT_PRBS, 
+          t1.WORK_LIMT_BC_MNT_PROBS, 
+          t1.PAIN_LIMITS_NORMAL_WORK, 
+          t1.FELT_CALM_PEACEFUL, 
+          t1.HAD_A_LOT_OF_ENERGY, 
+          t1.FELT_DOWN, 
+          t1.HLTH_STOPPED_SOC_ACTIV, 
+          t1.REVERSE_ADGENH42, 
+          t1.REVERSE_ADPAIN42, 
+          t1.REVERSE_ADCAPE42, 
+          t1.REVERSE_ADNRGY42, 
+          t1.DUPERSID11, 
+          t1.Marital_Status_Cate, 
+          t1.DUPERSID2, 
+          t1.MARRY12X, 
+          t1.EDRECODE, 
+          t1.MARITUAL_STATUS, 
+          t1.EDUCATION_RECODE, 
+          t1.EDRECODE_Categories, 
+          t1.HEALTH_IN_GENERAL1, 
+          t1.HLTH_LIMITS_MOD_ACTIVITIES1, 
+          t1.HLTH_LIMITS_CLIMBING_STAIRS1, 
+          t1.ACCP_LESS_BC_PHY_PRBS1, 
+          t1.WORK_LIMT_BC_PJY_PROBS1, 
+          t1.ACCP_LESS_BC_MNT_PRBS1, 
+          t1.WORK_LIMT_BC_MNT_PROBS1, 
+          t1.PAIN_LIMITS_NORMAL_WORK1, 
+          t1.FELT_CALM_PEACEFUL1, 
+          t1.HAD_A_LOT_OF_ENERGY1, 
+          t1.FELT_DOWN1, 
+          t1.HLTH_STOPPED_SOC_ACTIV1, 
+          t1.REVERSE_ADGENH421, 
+          t1.REVERSE_ADPAIN421, 
+          t1.REVERSE_ADCAPE421, 
+          t1.REVERSE_ADNRGY421, 
+          t1.SUM_SF12, 
+          t1.DUPERSID3, 
+          t1.REGION12, 
+          t1.AGE12X, 
+          t1.SEX, 
+          t1.RACETHX, 
+          t1.MARRY12X1, 
+          t1.EDUCYR, 
+          t1.EMPST31, 
+          t1.MARTIAL_STATUS, 
+          t1.HEALTH_IN_GENERAL2, 
+          t1.HLTH_LIMITS_MOD_ACTIVITIES2, 
+          t1.HLTH_LIMITS_CLIMBING_STAIRS2, 
+          t1.ACCP_LESS_BC_PHY_PRBS2, 
+          t1.WORK_LIMT_BC_PJY_PROBS2, 
+          t1.ACCP_LESS_BC_MNT_PRBS2, 
+          t1.WORK_LIMT_BC_MNT_PROBS2, 
+          t1.PAIN_LIMITS_NORMAL_WORK2, 
+          t1.FELT_CALM_PEACEFUL2, 
+          t1.HAD_A_LOT_OF_ENERGY2, 
+          t1.FELT_DOWN2, 
+          t1.HLTH_STOPPED_SOC_ACTIV2, 
+          t1.YEARS_EDUC, 
+          t1.EMPLOYMENT_STATUS_53, 
+          t1.EMPLOYMENT_STATS_31, 
+          t1.'EMPLOYMENT_STATUS _42'n, 
+          t1.EMPST42, 
+          t1.EMPST53, 
+          t1.ADPRX42, 
+          t1.ADULT_PROXY, 
+          t1.ILL_NEED_CARE, 
+          t1.GOT_CARE_WHEN_NEEDED, 
+          t1.MADE_APPT_ROUTINE, 
+          t1.GOT_MED_APPT_WHEN_NEEDED, 
+          t1.NEED_ANY_CARE, 
+          t1.EXPLAIN_UNDERSTOOD, 
+          t1.SHOW_RESPECT, 
+          t1.HAD_TO_FILL_FORM, 
+          t1.OFFERED_HELP_FILL_FORM, 
+          t1.ADILCR42, 
+          t1.ADILWW42, 
+          t1.ADRTCR42, 
+          t1.ADRTWW42, 
+          t1.ADAPPT42, 
+          t1.ADNDCR42, 
+          t1.ADEGMC42, 
+          t1.ADLIST42, 
+          t1.ADEXPL42, 
+          t1.ADRESP42, 
+          t1.ADPRTM42, 
+          t1.ADINST42, 
+          t1.ADEZUN42, 
+          t1.ADTLHW42, 
+          t1.ADFFRM42, 
+          t1.ADFHLP42, 
+          t1.ADHECR42, 
+          t1.ADSMOK42, 
+          t1.ADNSMK42, 
+          t1.ADDRBP42, 
+          t1.ADSPEC42, 
+          t1.ADSPRF42, 
+          t1.ADGENH42, 
+          t1.ADDAYA42, 
+          t1.ADCLIM42, 
+          t1.ADPALS42, 
+          t1.ADPWLM42, 
+          t1.ADMALS42, 
+          t1.ADMWLM42, 
+          t1.ADPAIN42, 
+          t1.ADCAPE42, 
+          t1.ADNRGY42, 
+          t1.ADDOWN42, 
+          t1.ADSOCA42, 
+          t1.PCS42, 
+          t1.MCS42, 
+          t1.SFFLAG42, 
+          t1.ADNERV42, 
+          t1.ADHOPE42, 
+          t1.ADREST42, 
+          t1.ADSAD42, 
+          t1.ADEFRT42, 
+          t1.ADWRTH42, 
+          t1.K6SUM42, 
+          t1.ADINTR42, 
+          t1.ADDPRS42, 
+          t1.PHQ242, 
+          t1.ADINSA42, 
+          t1.ADINSB42, 
+          t1.ADRISK42, 
+          t1.ADOVER42, 
+          t1.ADCMPM42, 
+          t1.ADCMPD42, 
+          t1.ADCMPY42, 
+          t1.ADLANG42, 
+          t1.FAMINC12, 
+          t1.INSCOV12, 
+          t1.INSURC12, 
+          t1.TOTMCR12, 
+          t1.MDUNAB42, 
+          t1.STRKDX, 
+          t1.ANGIDX, 
+          t1.ARTHDX, 
+          t1.ASTHDX, 
+          t1.CANCERDX, 
+          t1.OHRTDX, 
+          t1.ERDEXP12, 
+          t1.IPTEXP12, 
+          t1.EASY_GET_MED_CARE, 
+          t1.DOC_LISTEN_TO, 
+          t1.DOC_SPENT_ENUF_TIME, 
+          t1.RATING_HEALTH_CARE, 
+          t1.DONT_NEED_HLTH_INS, 
+          t1.HLTH_INS_WORTH, 
+          t1.OVERALL_RATING_OF_FEELINGS, 
+          t1.OVERCOME_WITHOUT_INSURC, 
+          t1.CANCER, 
+          t1.FELT_HOPELESS, 
+          t1.INFULLYR, 
+          t1.MPCDATA, 
+          t1.ERDATEYR, 
+          t1.ERDATEMM, 
+          t1.ERDATEDD, 
+          t1.SEEDOC, 
+          t1.VSTCTGRY, 
+          t1.VSTRELCN, 
+          t1.LABTEST, 
+          t1.SONOGRAM, 
+          t1.XRAYS, 
+          t1.MAMMOG, 
+          t1.MRI, 
+          t1.EKG, 
+          t1.EEG, 
+          t1.RCVVAC, 
+          t1.ANESTH, 
+          t1.THRTSWAB, 
+          t1.OTHSVCE, 
+          t1.SURGPROC, 
+          t1.MEDPRESC, 
+          t1.ERICD1X, 
+          t1.ERICD2X, 
+          t1.ERICD3X, 
+          t1.ERPRO1X, 
+          t1.ERCCC1X, 
+          t1.ERCCC2X, 
+          t1.ERCCC3X, 
+          t1.FFERTYPE, 
+          t1.FFBEF12, 
+          t1.ERXP12X, 
+          t1.ERTC12X, 
+          t1.ERFSF12X, 
+          t1.ERFMR12X, 
+          t1.ERFMD12X, 
+          t1.ERFPV12X, 
+          t1.ERFVA12X, 
+          t1.ERFTR12X, 
+          t1.ERFOF12X, 
+          t1.ERFSL12X, 
+          t1.ERFWC12X, 
+          t1.ERFOR12X, 
+          t1.ERFOU12X, 
+          t1.ERFOT12X, 
+          t1.ERFXP12X, 
+          t1.ERFTC12X, 
+          t1.ERDSF12X, 
+          t1.ERDMR12X, 
+          t1.ERDMD12X, 
+          t1.ERDPV12X, 
+          t1.ERDVA12X, 
+          t1.ERDTR12X, 
+          t1.ERDOF12X, 
+          t1.ERDSL12X, 
+          t1.ERDWC12X, 
+          t1.ERDOR12X, 
+          t1.ERDOU12X, 
+          t1.ERDOT12X, 
+          t1.ERDXP12X, 
+          t1.ERDTC12X, 
+          t1.IMPFLAG, 
+          t1.PERWT12F, 
+          t1.VARSTR, 
+          t1.VARPSU, 
+          /* MRI_ */
+            (CASE 
+               WHEN -7 = t1.MRI THEN .
+               WHEN -8 = t1.MRI THEN .
+               WHEN -9 = t1.MRI THEN .
+               WHEN 95 = t1.MRI THEN 2
+               ELSE t1.MRI
+            END) LABEL="MRI recoded missing" AS MRI_, 
+          /* XRAYS_ */
+            (CASE 
+               WHEN -7 = t1.XRAYS THEN .
+               WHEN -8 = t1.XRAYS THEN .
+               WHEN -9 = t1.XRAYS THEN .
+               WHEN 95 = t1.XRAYS THEN 2
+               ELSE t1.XRAYS
+            END) LABEL="Xrays recoded missing" AS XRAYS_
+      FROM WJX.QUERY_ER_2012_M t1;
+QUIT;
+
+GOPTIONS NOACCESSIBLE;
+
+
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: One-Way Frequencies for MRI   */
+%LET _CLIENTTASKLABEL='One-Way Frequencies for MRI';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
 /* -------------------------------------------------------------------
    Code generated by SAS Task
 
-   Generated on: Monday, January 12, 2015 at 3:26:35 PM
-   By task: Distribution Analysis for Doctor Quality
+   Generated on: Tuesday, January 13, 2015 at 11:37:08 AM
+   By task: One-Way Frequencies for MRI
 
-   Input Data: Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW
+   Input Data: Local:WJX.QUERY_ER_2012_M_RECODED
+   Server:  Local
+   ------------------------------------------------------------------- */
+
+%_eg_conditional_dropds(WORK.SORT);
+/* -------------------------------------------------------------------
+   Sort data set Local:WJX.QUERY_ER_2012_M_RECODED
+   ------------------------------------------------------------------- */
+
+PROC SQL;
+	CREATE VIEW WORK.SORT AS
+		SELECT T.MRI_
+	FROM WJX.QUERY_ER_2012_M_RECODED(FIRSTOBS=1 ) as T
+;
+QUIT;
+
+TITLE;
+TITLE1 "One-Way Frequencies";
+TITLE2 "Results for MRI";
+FOOTNOTE;
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
+PROC FREQ DATA=WORK.SORT
+	ORDER=INTERNAL
+;
+	TABLES MRI_ / NOCUM  SCORES=TABLE;
+RUN;
+/* -------------------------------------------------------------------
+   End of task code.
+   ------------------------------------------------------------------- */
+RUN; QUIT;
+%_eg_conditional_dropds(WORK.SORT);
+TITLE; FOOTNOTE;
+
+
+GOPTIONS NOACCESSIBLE;
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: One-Way Frequencies for Xrays   */
+%LET _CLIENTTASKLABEL='One-Way Frequencies for Xrays';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+/* -------------------------------------------------------------------
+   Code generated by SAS Task
+
+   Generated on: Tuesday, January 13, 2015 at 11:37:08 AM
+   By task: One-Way Frequencies for Xrays
+
+   Input Data: Local:WJX.QUERY_ER_2012_M_RECODED
+   Server:  Local
+   ------------------------------------------------------------------- */
+
+%_eg_conditional_dropds(WORK.SORT);
+/* -------------------------------------------------------------------
+   Sort data set Local:WJX.QUERY_ER_2012_M_RECODED
+   ------------------------------------------------------------------- */
+
+PROC SQL;
+	CREATE VIEW WORK.SORT AS
+		SELECT T.XRAYS_
+	FROM WJX.QUERY_ER_2012_M_RECODED(FIRSTOBS=1 ) as T
+;
+QUIT;
+
+TITLE;
+TITLE1 "One-Way Frequencies";
+TITLE2 "Results for Xrays";
+FOOTNOTE;
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
+PROC FREQ DATA=WORK.SORT
+	ORDER=INTERNAL
+;
+	TABLES XRAYS_ / NOCUM  SCORES=TABLE;
+RUN;
+/* -------------------------------------------------------------------
+   End of task code.
+   ------------------------------------------------------------------- */
+RUN; QUIT;
+%_eg_conditional_dropds(WORK.SORT);
+TITLE; FOOTNOTE;
+
+
+GOPTIONS NOACCESSIBLE;
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: Count variable   */
+%LET _CLIENTTASKLABEL='Count variable';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+%_eg_conditional_dropds(WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE);
+
+PROC SQL;
+   CREATE TABLE WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE AS 
+   SELECT t1.DUPERSID, 
+          /* COUNT_of_DUPERSID1 */
+            (COUNT(t1.DUPERSID1)) AS COUNT_of_DUPERSID1
+      FROM WJX.QUERY_ER_2012_M_RECODED t1
+      GROUP BY t1.DUPERSID;
+QUIT;
+
+GOPTIONS NOACCESSIBLE;
+
+
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: One-Way Frequencies for Count Variables   */
+%LET _CLIENTTASKLABEL='One-Way Frequencies for Count Variables';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+/* -------------------------------------------------------------------
+   Code generated by SAS Task
+
+   Generated on: Tuesday, January 13, 2015 at 11:37:08 AM
+   By task: One-Way Frequencies for Count Variables
+
+   Input Data: Local:WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE
+   Server:  Local
+   ------------------------------------------------------------------- */
+
+%_eg_conditional_dropds(WORK.SORT);
+/* -------------------------------------------------------------------
+   Sort data set Local:WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE
+   ------------------------------------------------------------------- */
+
+PROC SQL;
+	CREATE VIEW WORK.SORT AS
+		SELECT T.COUNT_of_DUPERSID1
+	FROM WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE(FIRSTOBS=1 ) as T
+;
+QUIT;
+
+TITLE;
+TITLE1 "One-Way Frequencies";
+TITLE2 "Results for Count Variables";
+FOOTNOTE;
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
+PROC FREQ DATA=WORK.SORT
+	ORDER=INTERNAL
+;
+	TABLES COUNT_of_DUPERSID1 / NOCUM  SCORES=TABLE;
+RUN;
+/* -------------------------------------------------------------------
+   End of task code.
+   ------------------------------------------------------------------- */
+RUN; QUIT;
+%_eg_conditional_dropds(WORK.SORT);
+TITLE; FOOTNOTE;
+
+
+GOPTIONS NOACCESSIBLE;
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: Distribution Analysis for number of ER Visits   */
+%LET _CLIENTTASKLABEL='Distribution Analysis for number of ER Visits';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+/* -------------------------------------------------------------------
+   Code generated by SAS Task
+
+   Generated on: Tuesday, January 13, 2015 at 11:37:09 AM
+   By task: Distribution Analysis for number of ER Visits
+
+   Input Data: Local:WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE
    Server:  Local
    ------------------------------------------------------------------- */
 
@@ -1201,19 +1487,18 @@ GOPTIONS ACCESSIBLE;
    PROC SHEWHART does not support DEVICE=ACTIVEX. Switching to PNG.
    ------------------------------------------------------------------- */
 OPTIONS DEV=PNG;
-ODS GRAPHICS ON;
 /* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW
+   Sort data set Local:WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE
    ------------------------------------------------------------------- */
 
 PROC SQL;
 	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.Sum_doctor_quality
-	FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW(FIRSTOBS=1 ) as T
+		SELECT T.COUNT_of_DUPERSID1
+	FROM WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE(FIRSTOBS=1 ) as T
 ;
 QUIT;
 TITLE;
-TITLE1 "Distribution analysis of: Supervision of Doctor Quality";
+TITLE1 "Distribution analysis of: Counts of Visits for ER";
 FOOTNOTE;
 FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
 	ODS EXCLUDE EXTREMEOBS MODES MOMENTS;
@@ -1225,9 +1510,10 @@ FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSY
 PROC UNIVARIATE DATA = WORK.SORTTempTableSorted
 		CIBASIC(TYPE=TWOSIDED ALPHA=0.05)
 		MU0=0
+	FREQ
 ;
-	VAR Sum_doctor_quality;
-	HISTOGRAM   Sum_doctor_quality / NORMAL	( 	W=1 	L=1 	COLOR=YELLOW  MU=EST SIGMA=EST)
+	VAR COUNT_of_DUPERSID1;
+	HISTOGRAM   COUNT_of_DUPERSID1 / NORMAL	( 	W=1 	L=1 	COLOR=YELLOW  MU=EST SIGMA=EST)
 	
 		CFRAME=GRAY CAXES=BLACK WAXIS=1  CBARLINE=BLACK CFILL=BLUE PFILL=SOLID ;
 	;
@@ -1241,7 +1527,6 @@ TITLE; FOOTNOTE;
    Restoring original device type setting.
    ------------------------------------------------------------------- */
 OPTIONS DEV=ACTIVEX;
-ODS GRAPHICS OFF;
 
 
 GOPTIONS NOACCESSIBLE;
@@ -1250,31 +1535,285 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: Query Builder   */
-%LET _CLIENTTASKLABEL='Query Builder';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: Count and Original Merged   */
+%LET _CLIENTTASKLABEL='Count and Original Merged';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WORK.QUERY_FOR_MEPS_FULLYR_2012__NEW);
+%_eg_conditional_dropds(WJX.QUERY_ER_2012_M_R_1);
 
 PROC SQL;
-   CREATE TABLE WORK.QUERY_FOR_MEPS_FULLYR_2012__NEW AS 
-   SELECT /* DQ_Categorical */
+   CREATE TABLE WJX.QUERY_ER_2012_M_R_1(label="QUERY_ER_2012_M_R_1") AS 
+   SELECT t1.DUPERSID, 
+          t1.COUNT_of_DUPERSID1, 
+          t2.INER, 
+          t2.DUID, 
+          t2.PID, 
+          t2.DUPERSID AS DUPERSID1, 
+          t2.EVNTIDX, 
+          t2.EVENTRN, 
+          t2.ERHEVIDX, 
+          t2.FFEEIDX, 
+          t2.PANEL, 
+          t2.DUPERSID1 AS DUPERSID11, 
+          t2.HEALTH_IN_GENERAL, 
+          t2.HLTH_LIMITS_MOD_ACTIVITIES, 
+          t2.HLTH_LIMITS_CLIMBING_STAIRS, 
+          t2.ACCP_LESS_BC_PHY_PRBS, 
+          t2.WORK_LIMT_BC_PJY_PROBS, 
+          t2.ACCP_LESS_BC_MNT_PRBS, 
+          t2.WORK_LIMT_BC_MNT_PROBS, 
+          t2.PAIN_LIMITS_NORMAL_WORK, 
+          t2.FELT_CALM_PEACEFUL, 
+          t2.HAD_A_LOT_OF_ENERGY, 
+          t2.FELT_DOWN, 
+          t2.HLTH_STOPPED_SOC_ACTIV, 
+          t2.REVERSE_ADGENH42, 
+          t2.REVERSE_ADPAIN42, 
+          t2.REVERSE_ADCAPE42, 
+          t2.REVERSE_ADNRGY42, 
+          t2.DUPERSID11 AS DUPERSID111, 
+          t2.Marital_Status_Cate, 
+          t2.DUPERSID2, 
+          t2.MARRY12X, 
+          t2.EDRECODE, 
+          t2.MARITUAL_STATUS, 
+          t2.EDUCATION_RECODE, 
+          t2.EDRECODE_Categories, 
+          t2.HEALTH_IN_GENERAL1, 
+          t2.HLTH_LIMITS_MOD_ACTIVITIES1, 
+          t2.HLTH_LIMITS_CLIMBING_STAIRS1, 
+          t2.ACCP_LESS_BC_PHY_PRBS1, 
+          t2.WORK_LIMT_BC_PJY_PROBS1, 
+          t2.ACCP_LESS_BC_MNT_PRBS1, 
+          t2.WORK_LIMT_BC_MNT_PROBS1, 
+          t2.PAIN_LIMITS_NORMAL_WORK1, 
+          t2.FELT_CALM_PEACEFUL1, 
+          t2.HAD_A_LOT_OF_ENERGY1, 
+          t2.FELT_DOWN1, 
+          t2.HLTH_STOPPED_SOC_ACTIV1, 
+          t2.REVERSE_ADGENH421, 
+          t2.REVERSE_ADPAIN421, 
+          t2.REVERSE_ADCAPE421, 
+          t2.REVERSE_ADNRGY421, 
+          t2.SUM_SF12, 
+          t2.DUPERSID3, 
+          t2.REGION12, 
+          t2.AGE12X, 
+          t2.SEX, 
+          t2.RACETHX, 
+          t2.MARRY12X1, 
+          t2.EDUCYR, 
+          t2.EMPST31, 
+          t2.MARTIAL_STATUS, 
+          t2.HEALTH_IN_GENERAL2, 
+          t2.HLTH_LIMITS_MOD_ACTIVITIES2, 
+          t2.HLTH_LIMITS_CLIMBING_STAIRS2, 
+          t2.ACCP_LESS_BC_PHY_PRBS2, 
+          t2.WORK_LIMT_BC_PJY_PROBS2, 
+          t2.ACCP_LESS_BC_MNT_PRBS2, 
+          t2.WORK_LIMT_BC_MNT_PROBS2, 
+          t2.PAIN_LIMITS_NORMAL_WORK2, 
+          t2.FELT_CALM_PEACEFUL2, 
+          t2.HAD_A_LOT_OF_ENERGY2, 
+          t2.FELT_DOWN2, 
+          t2.HLTH_STOPPED_SOC_ACTIV2, 
+          t2.YEARS_EDUC, 
+          t2.EMPLOYMENT_STATUS_53, 
+          t2.EMPLOYMENT_STATS_31, 
+          t2.'EMPLOYMENT_STATUS _42'n, 
+          t2.EMPST42, 
+          t2.EMPST53, 
+          t2.ADPRX42, 
+          t2.ADULT_PROXY, 
+          t2.ILL_NEED_CARE, 
+          t2.GOT_CARE_WHEN_NEEDED, 
+          t2.MADE_APPT_ROUTINE, 
+          t2.GOT_MED_APPT_WHEN_NEEDED, 
+          t2.NEED_ANY_CARE, 
+          t2.EXPLAIN_UNDERSTOOD, 
+          t2.SHOW_RESPECT, 
+          t2.HAD_TO_FILL_FORM, 
+          t2.OFFERED_HELP_FILL_FORM, 
+          t2.ADILCR42, 
+          t2.ADILWW42, 
+          t2.ADRTCR42, 
+          t2.ADRTWW42, 
+          t2.ADAPPT42, 
+          t2.ADNDCR42, 
+          t2.ADEGMC42, 
+          t2.ADLIST42, 
+          t2.ADEXPL42, 
+          t2.ADRESP42, 
+          t2.ADPRTM42, 
+          t2.ADINST42, 
+          t2.ADEZUN42, 
+          t2.ADTLHW42, 
+          t2.ADFFRM42, 
+          t2.ADFHLP42, 
+          t2.ADHECR42, 
+          t2.ADSMOK42, 
+          t2.ADNSMK42, 
+          t2.ADDRBP42, 
+          t2.ADSPEC42, 
+          t2.ADSPRF42, 
+          t2.ADGENH42, 
+          t2.ADDAYA42, 
+          t2.ADCLIM42, 
+          t2.ADPALS42, 
+          t2.ADPWLM42, 
+          t2.ADMALS42, 
+          t2.ADMWLM42, 
+          t2.ADPAIN42, 
+          t2.ADCAPE42, 
+          t2.ADNRGY42, 
+          t2.ADDOWN42, 
+          t2.ADSOCA42, 
+          t2.PCS42, 
+          t2.MCS42, 
+          t2.SFFLAG42, 
+          t2.ADNERV42, 
+          t2.ADHOPE42, 
+          t2.ADREST42, 
+          t2.ADSAD42, 
+          t2.ADEFRT42, 
+          t2.ADWRTH42, 
+          t2.K6SUM42, 
+          t2.ADINTR42, 
+          t2.ADDPRS42, 
+          t2.PHQ242, 
+          t2.ADINSA42, 
+          t2.ADINSB42, 
+          t2.ADRISK42, 
+          t2.ADOVER42, 
+          t2.ADCMPM42, 
+          t2.ADCMPD42, 
+          t2.ADCMPY42, 
+          t2.ADLANG42, 
+          t2.FAMINC12, 
+          t2.INSCOV12, 
+          t2.INSURC12, 
+          t2.TOTMCR12, 
+          t2.MDUNAB42, 
+          t2.STRKDX, 
+          t2.ANGIDX, 
+          t2.ARTHDX, 
+          t2.ASTHDX, 
+          t2.CANCERDX, 
+          t2.OHRTDX, 
+          t2.ERDEXP12, 
+          t2.IPTEXP12, 
+          t2.EASY_GET_MED_CARE, 
+          t2.DOC_LISTEN_TO, 
+          t2.DOC_SPENT_ENUF_TIME, 
+          t2.RATING_HEALTH_CARE, 
+          t2.DONT_NEED_HLTH_INS, 
+          t2.HLTH_INS_WORTH, 
+          t2.OVERALL_RATING_OF_FEELINGS, 
+          t2.OVERCOME_WITHOUT_INSURC, 
+          t2.CANCER, 
+          t2.FELT_HOPELESS, 
+          t2.INFULLYR, 
+          t2.MPCDATA, 
+          t2.ERDATEYR, 
+          t2.ERDATEMM, 
+          t2.ERDATEDD, 
+          t2.SEEDOC, 
+          t2.VSTCTGRY, 
+          t2.VSTRELCN, 
+          t2.LABTEST, 
+          t2.SONOGRAM, 
+          t2.XRAYS, 
+          t2.MAMMOG, 
+          t2.MRI, 
+          t2.EKG, 
+          t2.EEG, 
+          t2.RCVVAC, 
+          t2.ANESTH, 
+          t2.THRTSWAB, 
+          t2.OTHSVCE, 
+          t2.SURGPROC, 
+          t2.MEDPRESC, 
+          t2.ERICD1X, 
+          t2.ERICD2X, 
+          t2.ERICD3X, 
+          t2.ERPRO1X, 
+          t2.ERCCC1X, 
+          t2.ERCCC2X, 
+          t2.ERCCC3X, 
+          t2.FFERTYPE, 
+          t2.FFBEF12, 
+          t2.ERXP12X, 
+          t2.ERTC12X, 
+          t2.ERFSF12X, 
+          t2.ERFMR12X, 
+          t2.ERFMD12X, 
+          t2.ERFPV12X, 
+          t2.ERFVA12X, 
+          t2.ERFTR12X, 
+          t2.ERFOF12X, 
+          t2.ERFSL12X, 
+          t2.ERFWC12X, 
+          t2.ERFOR12X, 
+          t2.ERFOU12X, 
+          t2.ERFOT12X, 
+          t2.ERFXP12X, 
+          t2.ERFTC12X, 
+          t2.ERDSF12X, 
+          t2.ERDMR12X, 
+          t2.ERDMD12X, 
+          t2.ERDPV12X, 
+          t2.ERDVA12X, 
+          t2.ERDTR12X, 
+          t2.ERDOF12X, 
+          t2.ERDSL12X, 
+          t2.ERDWC12X, 
+          t2.ERDOR12X, 
+          t2.ERDOU12X, 
+          t2.ERDOT12X, 
+          t2.ERDXP12X, 
+          t2.ERDTC12X, 
+          t2.IMPFLAG, 
+          t2.PERWT12F, 
+          t2.VARSTR, 
+          t2.VARPSU, 
+          t2.MRI_, 
+          t2.XRAYS_
+      FROM WORK.QUERY_FOR_QUERY_ER_2012_M_RECODE t1
+           INNER JOIN WJX.QUERY_ER_2012_M_RECODED t2 ON (t1.DUPERSID = t2.DUPERSID);
+QUIT;
+
+GOPTIONS NOACCESSIBLE;
+
+
+
+%LET _CLIENTTASKLABEL=;
+%LET _CLIENTPROJECTPATH=;
+%LET _CLIENTPROJECTNAME=;
+
+
+/*   START OF NODE: ER Visits Categorical   */
+%LET _CLIENTTASKLABEL='ER Visits Categorical';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
+
+GOPTIONS ACCESSIBLE;
+%_eg_conditional_dropds(WORK.QUERY_FOR_QUERY_ER_2012_M_R_1);
+
+PROC SQL;
+   CREATE TABLE WORK.QUERY_FOR_QUERY_ER_2012_M_R_1 AS 
+   SELECT /* Count_ER_Visits */
             (CASE  
-               WHEN t1.Sum_doctor_quality >=1 and t1.Sum_doctor_quality <=12
+               WHEN t1.COUNT_of_DUPERSID1 =1
                THEN 1
-               WHEN t1.Sum_doctor_quality >12 and t1.Sum_doctor_quality <=15
+               WHEN t1.COUNT_of_DUPERSID1 =2
                THEN 2
-               WHEN t1.Sum_doctor_quality >15 and t1.Sum_doctor_quality <=16
+               WHEN t1.COUNT_of_DUPERSID1 >2
                THEN 3
-               WHEN t1.Sum_doctor_quality >16 and t1.Sum_doctor_quality <=19
-               THEN 4
-               WHEN t1.Sum_doctor_quality >19
-               THEN 5
-            END) LABEL="DQ Categories" AS DQ_Categorical, 
-          t1.Sum_doctor_quality
-      FROM WJX.QUERY_FOR_MEPS_FULLYR_2012__NEW t1;
+            END) LABEL="Count of ER visits" AS Count_ER_Visits, 
+          t1.COUNT_of_DUPERSID1
+      FROM WJX.QUERY_ER_2012_M_R_1 t1;
 QUIT;
 
 GOPTIONS NOACCESSIBLE;
@@ -1285,209 +1824,42 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: One-Way Frequencies1   */
-%LET _CLIENTTASKLABEL='One-Way Frequencies1';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: ER Visits for ER Visits   */
+%LET _CLIENTTASKLABEL='ER Visits for ER Visits';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
 /* -------------------------------------------------------------------
    Code generated by SAS Task
 
-   Generated on: Monday, January 12, 2015 at 3:26:36 PM
-   By task: One-Way Frequencies1
+   Generated on: Tuesday, January 13, 2015 at 11:37:10 AM
+   By task: ER Visits for ER Visits
 
-   Input Data: Local:WORK.QUERY_FOR_MEPS_FULLYR_2012__NEW
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORT);
-/* -------------------------------------------------------------------
-   Sort data set Local:WORK.QUERY_FOR_MEPS_FULLYR_2012__NEW
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORT AS
-		SELECT T.DQ_Categorical, T.Sum_doctor_quality
-	FROM WORK.QUERY_FOR_MEPS_FULLYR_2012__NEW as T
-;
-QUIT;
-
-TITLE;
-TITLE1 "One-Way Frequencies";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA=WORK.SORT
-	ORDER=INTERNAL
-;
-	TABLES DQ_Categorical /  SCORES=TABLE;
-	TABLES Sum_doctor_quality /  SCORES=TABLE;
-RUN;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORT);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Filter and Sort   */
-%LET _CLIENTTASKLABEL='Filter and Sort';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WJX.FILTER_FOR_MEPS_FULLYR_2012_0112);
-
-PROC SQL;
-   CREATE TABLE WJX.FILTER_FOR_MEPS_FULLYR_2012_0112(label="FILTER_FOR_MEPS_FULLYR_2012_0112") AS 
-   SELECT t1.DUPERSID, 
-          t1.MARRY12X, 
-          t1.EDRECODE
-      FROM EC100005.meps_fullyr_2012 t1
-      WHERE t1.AGE12X >= 18
-      ORDER BY t1.DUPERSID;
-QUIT;
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: One-Way Frequencies for Maritual Status and Education Level   */
-%LET _CLIENTTASKLABEL='One-Way Frequencies for Maritual Status and Education Level';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:36 PM
-   By task: One-Way Frequencies for Maritual Status and Education Level
-
-   Input Data: Local:WJX.FILTER_FOR_MEPS_FULLYR_2012_0112
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORT);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.FILTER_FOR_MEPS_FULLYR_2012_0112
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORT AS
-		SELECT T.MARRY12X, T.EDRECODE
-	FROM WJX.FILTER_FOR_MEPS_FULLYR_2012_0112(FIRSTOBS=1 ) as T
-;
-QUIT;
-
-TITLE;
-TITLE1 "One-Way Frequencies";
-TITLE2 "Results for Marital Status and Education Level";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
-PROC FREQ DATA=WORK.SORT
-	ORDER=INTERNAL
-;
-	TABLES MARRY12X /  SCORES=TABLE;
-	TABLES EDRECODE /  SCORES=TABLE;
-RUN;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORT);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Recoded Missing Variables   */
-%LET _CLIENTTASKLABEL='Recoded Missing Variables';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WJX.QUERY_REV2);
-
-PROC SQL;
-   CREATE TABLE WJX.QUERY_REV2(label="QUERY_REV2") AS 
-   SELECT t1.DUPERSID, 
-          t1.MARRY12X, 
-          t1.EDRECODE, 
-          /* MARITUAL_STATUS */
-            (CASE 
-               WHEN -7 = t1.MARRY12X THEN .
-               WHEN -9 = t1.MARRY12X THEN .
-               ELSE t1.MARRY12X
-            END) LABEL="Maritual Status (Recoded missing)" AS MARITUAL_STATUS, 
-          /* EDUCATION_RECODE */
-            (CASE 
-               WHEN -7 = t1.EDRECODE THEN .
-               WHEN -8 = t1.EDRECODE THEN .
-               WHEN -9 = t1.EDRECODE THEN .
-               ELSE t1.EDRECODE
-            END) LABEL="Education Level (recoded missing)" AS EDUCATION_RECODE
-      FROM WJX.FILTER_FOR_MEPS_FULLYR_2012_0112 t1;
-QUIT;
-
-GOPTIONS NOACCESSIBLE;
-
-
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Maritual Status   */
-%LET _CLIENTTASKLABEL='Maritual Status';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:36 PM
-   By task: Maritual Status
-
-   Input Data: Local:WJX.QUERY_REV2
+   Input Data: Local:WORK.QUERY_FOR_QUERY_ER_2012_M_R_1
    Server:  Local
    ------------------------------------------------------------------- */
 
 %_eg_conditional_dropds(WORK.SORTTempTableSorted);
 /* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_REV2
+   Sort data set Local:WORK.QUERY_FOR_QUERY_ER_2012_M_R_1
    ------------------------------------------------------------------- */
 
 PROC SQL;
 	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.MARITUAL_STATUS, T.MARRY12X
-	FROM WJX.QUERY_REV2 as T
+		SELECT T.COUNT_of_DUPERSID1, T.Count_ER_Visits
+	FROM WORK.QUERY_FOR_QUERY_ER_2012_M_R_1(FIRSTOBS=1 ) as T
 ;
 QUIT;
 TITLE;
 TITLE1 "Table Analysis";
-TITLE2 "Results";
+TITLE2 "Results for ER Visits";
 FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
 PROC FREQ DATA = WORK.SORTTempTableSorted
 	ORDER=INTERNAL
 ;
-	TABLES MARRY12X * MARITUAL_STATUS /
+	TABLES COUNT_of_DUPERSID1 * Count_ER_Visits /
 		NOROW
 		NOCOL
 		NOPERCENT
@@ -1509,338 +1881,44 @@ GOPTIONS NOACCESSIBLE;
 %LET _CLIENTPROJECTNAME=;
 
 
-/*   START OF NODE: Education Level   */
-%LET _CLIENTTASKLABEL='Education Level';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
+/*   START OF NODE: One-Way Frequencies for ER Visits Categories   */
+%LET _CLIENTTASKLABEL='One-Way Frequencies for ER Visits Categories';
+%LET _CLIENTPROJECTPATH='C:\Users\jwang03\Desktop\Assignment 6 20150113\WangJ_SAS_Project_20150113.egp';
+%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150113.egp';
 
 GOPTIONS ACCESSIBLE;
 /* -------------------------------------------------------------------
    Code generated by SAS Task
 
-   Generated on: Monday, January 12, 2015 at 3:26:37 PM
-   By task: Education Level
+   Generated on: Tuesday, January 13, 2015 at 11:37:10 AM
+   By task: One-Way Frequencies for ER Visits Categories
 
-   Input Data: Local:WJX.QUERY_REV2
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_REV2
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.EDUCATION_RECODE, T.EDRECODE
-	FROM WJX.QUERY_REV2 as T
-;
-QUIT;
-TITLE;
-TITLE1 "Table Analysis";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA = WORK.SORTTempTableSorted
-	ORDER=INTERNAL
-;
-	TABLES EDRECODE * EDUCATION_RECODE /
-		NOROW
-		NOCOL
-		NOPERCENT
-		MISSPRINT
-		NOCUM
-		SCORES=TABLE
-		ALPHA=0.05;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Distribution Analysis for Marital Status   */
-%LET _CLIENTTASKLABEL='Distribution Analysis for Marital Status';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:37 PM
-   By task: Distribution Analysis for Marital Status
-
-   Input Data: Local:WJX.QUERY_REV2
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   PROC SHEWHART does not support DEVICE=ACTIVEX. Switching to PNG.
-   ------------------------------------------------------------------- */
-OPTIONS DEV=PNG;
-ODS GRAPHICS ON;
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_REV2
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.MARITUAL_STATUS
-	FROM WJX.QUERY_REV2(FIRSTOBS=1 ) as T
-;
-QUIT;
-TITLE;
-TITLE1 "Distribution analysis of: Marital Status";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
-	ODS EXCLUDE EXTREMEOBS MODES MOMENTS QUANTILES;
-	
-	GOPTIONS htext=1 cells;
-	SYMBOL v=SQUARE c=BLUE h=1 cells;
-	PATTERN v=SOLID
-	;
-PROC UNIVARIATE DATA = WORK.SORTTempTableSorted
-		CIBASIC(TYPE=TWOSIDED ALPHA=0.05)
-		MU0=0
-;
-	VAR MARITUAL_STATUS;
-	HISTOGRAM   MARITUAL_STATUS / NORMAL	( 	W=1 	L=1 	COLOR=YELLOW  MU=EST SIGMA=EST)
-	
-		CFRAME=GRAY CAXES=BLACK WAXIS=1  CBARLINE=BLACK CFILL=BLUE PFILL=SOLID ;
-	;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-/* -------------------------------------------------------------------
-   Restoring original device type setting.
-   ------------------------------------------------------------------- */
-OPTIONS DEV=ACTIVEX;
-ODS GRAPHICS OFF;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Distribution Analysis for Education Level   */
-%LET _CLIENTTASKLABEL='Distribution Analysis for Education Level';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:37 PM
-   By task: Distribution Analysis for Education Level
-
-   Input Data: Local:WJX.QUERY_REV2
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-/* -------------------------------------------------------------------
-   PROC SHEWHART does not support DEVICE=ACTIVEX. Switching to PNG.
-   ------------------------------------------------------------------- */
-OPTIONS DEV=PNG;
-/* -------------------------------------------------------------------
-   Sort data set Local:WJX.QUERY_REV2
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORTTempTableSorted AS
-		SELECT T.EDUCATION_RECODE
-	FROM WJX.QUERY_REV2(FIRSTOBS=1 ) as T
-;
-QUIT;
-TITLE;
-TITLE1 "Distribution analysis of: Education Level";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
-	ODS EXCLUDE EXTREMEOBS MODES MOMENTS QUANTILES;
-	
-	GOPTIONS htext=1 cells;
-	SYMBOL v=SQUARE c=BLUE h=1 cells;
-	PATTERN v=SOLID
-	;
-PROC UNIVARIATE DATA = WORK.SORTTempTableSorted
-		CIBASIC(TYPE=TWOSIDED ALPHA=0.05)
-		MU0=0
-;
-	VAR EDUCATION_RECODE;
-	HISTOGRAM   EDUCATION_RECODE / NORMAL	( 	W=1 	L=1 	COLOR=YELLOW  MU=EST SIGMA=EST)
-	
-		CFRAME=GRAY CAXES=BLACK WAXIS=1  CBARLINE=BLACK CFILL=BLUE PFILL=SOLID ;
-	;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORTTempTableSorted);
-TITLE; FOOTNOTE;
-/* -------------------------------------------------------------------
-   Restoring original device type setting.
-   ------------------------------------------------------------------- */
-OPTIONS DEV=ACTIVEX;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: Query Builder1   */
-%LET _CLIENTTASKLABEL='Query Builder1';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-%_eg_conditional_dropds(WORK.QUERY_FOR_QUERY_REV2);
-
-PROC SQL;
-   CREATE TABLE WORK.QUERY_FOR_QUERY_REV2 AS 
-   SELECT /* Marital_Status_Cate */
-            (CASE  
-               WHEN t1.MARITUAL_STATUS >=1 and t1.MARITUAL_STATUS <=4
-               THEN 1
-               WHEN t1.MARITUAL_STATUS =5
-               THEN 2
-            END) LABEL="Marital_Status_Cate" AS Marital_Status_Cate, 
-          t1.DUPERSID, 
-          t1.MARRY12X, 
-          t1.EDRECODE, 
-          t1.MARITUAL_STATUS, 
-          t1.EDUCATION_RECODE, 
-          /* EDRECODE_Categories */
-            (CASE  
-               WHEN t1.EDUCATION_RECODE = 0
-               THEN 1
-              WHEN t1.EDUCATION_RECODE >=1 and t1.EDUCATION_RECODE <= 6
-               THEN 2
-              WHEN t1.EDUCATION_RECODE >=7 and t1.EDUCATION_RECODE <=12
-               THEN 3
-              WHEN t1.EDUCATION_RECODE >=13 and t1.EDUCATION_RECODE <=14
-               THEN 4
-              WHEN t1.EDUCATION_RECODE >14
-               THEN 5
-            END) LABEL="Education Level Categories" AS EDRECODE_Categories
-      FROM WJX.QUERY_REV2 t1;
-QUIT;
-
-GOPTIONS NOACCESSIBLE;
-
-
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: One-Way Frequencies2   */
-%LET _CLIENTTASKLABEL='One-Way Frequencies2';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:37 PM
-   By task: One-Way Frequencies2
-
-   Input Data: Local:WORK.QUERY_FOR_QUERY_REV2
+   Input Data: Local:WORK.QUERY_FOR_QUERY_ER_2012_M_R_1
    Server:  Local
    ------------------------------------------------------------------- */
 
 %_eg_conditional_dropds(WORK.SORT);
 /* -------------------------------------------------------------------
-   Sort data set Local:WORK.QUERY_FOR_QUERY_REV2
+   Sort data set Local:WORK.QUERY_FOR_QUERY_ER_2012_M_R_1
    ------------------------------------------------------------------- */
 
 PROC SQL;
 	CREATE VIEW WORK.SORT AS
-		SELECT T.Marital_Status_Cate, T.MARITUAL_STATUS
-	FROM WORK.QUERY_FOR_QUERY_REV2 as T
+		SELECT T.Count_ER_Visits, T.COUNT_of_DUPERSID1
+	FROM WORK.QUERY_FOR_QUERY_ER_2012_M_R_1(FIRSTOBS=1 ) as T
 ;
 QUIT;
 
 TITLE;
 TITLE1 "One-Way Frequencies";
-TITLE2 "Results";
+TITLE2 "Results for ER Visits Categories";
 FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
+FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.)) by Jingxuan Wang";
 PROC FREQ DATA=WORK.SORT
 	ORDER=INTERNAL
 ;
-	TABLES Marital_Status_Cate /  SCORES=TABLE;
-	TABLES MARITUAL_STATUS /  SCORES=TABLE;
-RUN;
-/* -------------------------------------------------------------------
-   End of task code.
-   ------------------------------------------------------------------- */
-RUN; QUIT;
-%_eg_conditional_dropds(WORK.SORT);
-TITLE; FOOTNOTE;
-
-
-GOPTIONS NOACCESSIBLE;
-%LET _CLIENTTASKLABEL=;
-%LET _CLIENTPROJECTPATH=;
-%LET _CLIENTPROJECTNAME=;
-
-
-/*   START OF NODE: One-Way Frequencies3   */
-%LET _CLIENTTASKLABEL='One-Way Frequencies3';
-%LET _CLIENTPROJECTPATH='P:\QAC\qac200\students\jwang03\Assignments\Assignment 5 20150112\WangJ_SAS_Project_20150112.egp';
-%LET _CLIENTPROJECTNAME='WangJ_SAS_Project_20150112.egp';
-
-GOPTIONS ACCESSIBLE;
-/* -------------------------------------------------------------------
-   Code generated by SAS Task
-
-   Generated on: Monday, January 12, 2015 at 3:26:38 PM
-   By task: One-Way Frequencies3
-
-   Input Data: Local:WORK.QUERY_FOR_QUERY_REV2
-   Server:  Local
-   ------------------------------------------------------------------- */
-
-%_eg_conditional_dropds(WORK.SORT);
-/* -------------------------------------------------------------------
-   Sort data set Local:WORK.QUERY_FOR_QUERY_REV2
-   ------------------------------------------------------------------- */
-
-PROC SQL;
-	CREATE VIEW WORK.SORT AS
-		SELECT T.EDRECODE, T.EDRECODE_Categories
-	FROM WORK.QUERY_FOR_QUERY_REV2 as T
-;
-QUIT;
-
-TITLE;
-TITLE1 "One-Way Frequencies";
-TITLE2 "Results";
-FOOTNOTE;
-FOOTNOTE1 "Generated by the SAS System (&_SASSERVERNAME, &SYSSCPL) on %TRIM(%QSYSFUNC(DATE(), NLDATE20.)) at %TRIM(%SYSFUNC(TIME(), TIMEAMPM12.))";
-PROC FREQ DATA=WORK.SORT
-	ORDER=INTERNAL
-;
-	TABLES EDRECODE /  SCORES=TABLE;
-	TABLES EDRECODE_Categories /  SCORES=TABLE;
+	TABLES Count_ER_Visits / NOCUM  SCORES=TABLE;
+	TABLES COUNT_of_DUPERSID1 / NOCUM  SCORES=TABLE;
 RUN;
 /* -------------------------------------------------------------------
    End of task code.
